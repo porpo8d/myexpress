@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const book = require('../models/book_model');
+const course = require('../models/course_model');
 
 router.get('/:id?',
  function(request, response) {
@@ -32,7 +32,7 @@ function(request, response) {
     if (err) {
       response.json(err);
     } else {
-      response.json(dbResult);
+      response.json(dbResult.insertId);
     }
   });
 });
@@ -40,7 +40,7 @@ function(request, response) {
 
 router.delete('/:id', 
 function(request, response) {
-  book.delete(request.params.id, function(err, dbResult) {
+  course.delete(request.params.id, function(err, dbResult) {
     if (err) {
       response.json(err);
     } else {
@@ -52,7 +52,7 @@ function(request, response) {
 
 router.put('/:id', 
 function(request, response) {
-  book.update(request.params.id, request.body, function(err, dbResult) {
+  course.update(request.params.id, request.body, function(err, dbResult) {
     if (err) {
       response.json(err);
     } else {
